@@ -1,0 +1,48 @@
+// // ==================== CÁC STRING METHOD BẮT BUỘC BIẾT TRONG JAV SCRIPT (MÌNH SẼ DÙNG FUNCTION ĐỂ BIỂU DIỄN)=============================
+
+// 1. strtoupper (Viết hoa các chữ trong string - giống title trong python)
+<?php
+echo strtoupper("Hello WORLD!"); //Out put : GOC SAN 
+?>
+//===============================================================================
+// 2. strtolower (Viết thường các chữ trong string - ngược lại uppercase) 
+echo strtolower("GOC SĂN DEAL."); //Out put : goc san deal
+//===============================================================================
+//3. explode (Tách string thành list)
+$str1 = "Goc Săn Deal";
+$split_str1 = explode(" ",$str1);
+var_dump($split_str1);
+=> Vì không thể in list trong php đc cho nên chỉ vardump thôi (còn lại thì làm ẩn)
+//===============================================================================
+//4. include (Nó giống if "string" in list hoặc string ở python)
+// case 1 - check if "string" has in list
+my_list = ["Goc","San","Deal"]
+keyword_to_check = "San"
+if (my_list.includes(keyword_to_check)) {
+	console.log(`${keyword_to_check} có trong list`)	
+}
+else {
+	console.log("Không tìm thấy")
+}
+//----------------
+// Case 2 - Check if "string" has in string
+my_string = "Goc San Deal"
+keyword_to_check = "San"
+if (my_string.includes(keyword_to_check)) {
+	console.log(`${keyword_to_check} có trong String`)	
+}
+else {
+	console.log("Không tìm thấy")
+}
+//===============================================================================
+5. Check if string in string 
+Dùng Re
+$a = 'góc săn deal';
+    $search = 'săn';
+        if(preg_match("/{$search}/i", $a)) {
+        echo 'true';
+    } else {
+        echo "không";
+    }
+ => Chữ i ở cuối đc dùng để không phân biệt chữ hoa , chữ thường nha
+ => update thêm về phần re sau....
