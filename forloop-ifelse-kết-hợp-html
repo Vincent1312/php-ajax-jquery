@@ -1,0 +1,147 @@
+LÝ THUYẾT :
+- NÓI CHUNG LÀ CỨ THẤY CÓ CODE HTML THÌ ĐÓNG THẺ PHP LẠI -> BỎ CODE HTML VÀO -> MỞ THẺ PHP CODE TIẾP (HOẶC ĐÓNG LUÔN)
+===============================
+CÔNG THỨC :
+1. ----------------------------
+FOR LOOP  : 
+<?php for(dieu kien) {?>
+thẻ html
+<? php} ?>
+~~~~~
+VÍ DỤ : 
+<?php for ($i=0;$i<=10;$i++) { ?>
+      <a href="?page=<?php echo $i?>"><?php echo $i?></a>
+<?php } ?>
+2. -------------------------
+~FOR LOOP + IF~ : 
+<?php for (dieu kien) { if (dieu kien) { ?>
+thẻ html 
+<?php } ?>
+<?php } ?>
+ví dụ:
+<?php for ($i=0;$i<=10;$i++) {
+          if ($i%2==0) { ?>
+                <a href="?page=<?php echo $i?>"><?php echo $i?></a>
+
+          <?php } ?>
+      <?php } ?>
+ 3.---------------------------
+ FOR LOOP + IF + ELSE : 
+ <?php for (dieu kien) { 
+          if (dieu kien) { ?>
+              thẻ html 
+          <?php else { ?> thẻ html  <php } ?>
+      <?php } ?>
+ví dụ :
+<?php 
+for ($i=0;$i<=10;$i++) {
+          if ($i%2==0) { ?>
+                <a href="?page=<?php echo $i?>"><?php echo $i?></a>
+
+        <?php } else { ?> <a href="?page=<?php echo $i?>"><?php echo $i+10?></a>  <?php } ?>
+             
+  <?php } ?>
+  
+ =>>
+ CHÚ Ý : NẾU CÓ IF + ELSE TRONG CODE THÌ KHI XONG THẺ HTML TRONG IF MUỐN VIẾT TIẾP ELSE THÌ MỞ 1 THẺ PHP RỒI VIẾT TIẾP TRONG ĐÓ (TẠI VÌ IF ĐI CÙNG ELSE CHO NẾN PHẢI MỞ CHO ĐÚNG)
+
+====================DEMO CODE=================
+
+<div class="row">
+        <?php
+
+       		include("config_db.php");
+
+            $per_page = 20;
+        
+
+            $type = "gia_sale";
+            $sort = "asc";
+            $search = "";
+
+            $begin = 0;
+
+            if (isset($_GET['sort']) && isset($_GET['search'])) {
+                $sort = $_GET['sort'];
+                $search = $_GET['search'];
+                if ($sort == "discount") {
+                     $type = "muc_giam";
+                     $sort = "desc";
+                }
+
+
+            } elseif (isset($_GET['sort'])) {
+                $sort = $_GET['sort'];
+                if ($sort == "discount") {
+                     $type = "muc_giam";
+                     $sort = "desc";
+                }
+            }
+
+            elseif (isset($_GET['search'])) {
+                $search = $_GET['search'];
+            }
+    
+            // Check nếu mà cái bộ lọc tụi nó nhập tào lao
+            $list_filter = array("desc", "asc", "discount");
+
+            if (!in_array($sort, $list_filter)) {
+                $sort = "asc";
+            }
+
+
+
+            if (isset($_GET['page'])) {
+                $page = $_GET['page'];
+                $begin = ($page*$per_page) - $per_page;
+
+                // echo $total_page;
+
+                if ($begin <1 ) {
+                    $begin = 1;
+                }
+
+
+            }
+         
+
+            // $begin = (page*per_page) - per_page
+
+
+			$sql = "SELECT * FROM deal_12h WHERE ten_sp LIKE '%$search%' ORDER BY ${type} ${sort} LIMIT $begin,$per_page";
+            // echo $sql;
+			$result = mysqli_query($connect_mysql,$sql);
+			$count = mysqli_num_rows($result);
+
+            $current_page = !empty($_GET['page']) ? $_GET['page'] : 1; // có nghĩa là nếu không bị trống thì nó sẽ lấy $_GET['page'], ngược lại là 1 (? là nếu đúng còn : thì ngược lại - tức là else)
+
+            if ($count>0) {
+
+    			while($row = mysqli_fetch_array($result)) {
+    						$ten_sp = $row['ten_sp'];
+    						$gia_goc = $row['gia_goc'];
+    						$gia_sale = $row['gia_sale'];
+    						$muc_giam = $row['muc_giam'];
+    						$link_sp = $row['link_sp'];	
+    						$image = $row['image'];	
+
+    			?>
+    				<div class="col-lg-3 col-sm-4 col-11 offset-sm-0 offset-1">
+    		            <div class="card">
+    		                <img class="card-img-top" src="<?php echo $image?>" alt="Card image cap">
+    		                <div class="card-body">
+    		                  <a class="card-text" href="<?php echo $link_sp?>" target="_blank"> <?php echo $ten_sp?> </a>
+    		                  <p class="discount"> <?php echo $muc_giam?></p> 
+    		                  <div class="price">
+    			                  <p class="sale_price"><?php echo $gia_sale?></p>    
+    			                  <p class="original_price"><del><?php echo $gia_goc?><del></p> 
+    		                  </div>  
+    		                </div>
+    		            </div>
+    		        </div>
+
+    			<?php } } 
+                else { echo '<h1 style="color:red;">KHÔNG CÓ DEAL RỒI IU BẠN ƠI</h1>';}
+                 ?>
+               
+        </div>
