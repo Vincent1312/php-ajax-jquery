@@ -1,0 +1,95 @@
+ <?php
+        include("config_db.php");
+
+        $search = "";
+
+        if (isset($_GET['search'])) { // Nếu param có ?search=
+            $search = $_GET['search'];
+
+        }
+
+        $sql_pagination = "SELECT * FROM deal_20h WHERE ten_sp LIKE '%$search%' ";
+        $result_pagination = mysqli_query($connect_mysql,$sql_pagination);
+        $count_pagination = mysqli_num_rows($result_pagination);
+
+        $total_page = ceil($count_pagination/20); // ĐỂ ĐẾM XEM CÓ BAO NHIÊU TRANG (MỖI TRANG LÀ 20 SẢN PHẨM)
+
+
+    ?>
+    <!--  //----------------------------------------
+    // PREVIOUS PAGE -->
+    <li class="page-item">
+
+        <?php 
+            if (isset($_GET['page']) ) { 
+                $page = $_GET['page']; 
+                $previous_page = intval($page) - 1;
+
+                if ( (intval($page) > 5) ) { ?>
+                      <span class="page-link"> <a href="?page=<?php echo $previous_page ?><?php if (isset($_GET['search'])) { $search = $_GET['search']; echo"&search=$search";} if (isset($_GET['sort'])) { $sort = $_GET['sort']; echo "&sort=$sort";}  ?>"><?php echo "<" ?></a></span>
+                <?php }  ?>
+        <?php } ?>
+    </li>
+     <!-- //-----------------
+    // FIRST PAGE -->
+    <li class="page-item">
+        <?php 
+            if (isset($_GET['page']) ) { 
+                $page = $_GET['page']; 
+
+                if ( (intval($page) > 1) && (intval($page) < intval($total_page)-4) ) { ?>
+                      <span class="page-link"> <a href="?page=1<?php if (isset($_GET['search'])) { $search = $_GET['search']; echo"&search=$search";} if (isset($_GET['sort'])) { $sort = $_GET['sort']; echo "&sort=$sort";}  ?>"><?php echo "1" ?></a></span>
+                <?php }  ?>
+        <?php } ?>
+    </li>
+    <!-- //-----------------------------
+    // FOR LOOP PAGE -->
+        <?php 
+            for ($num = 1; $num<=$total_page; $num++) {
+                if ($num != $current_page) {
+                    if ( ($num > $current_page - 5 && $num < $current_page + 5) && $current_page <= $num) { ?>
+                        <li class="page-item"> <a class="page-link" href="?page=<?php echo $num ?><?php if (isset($_GET['search'])) { $search = $_GET['search']; echo"&search=$search";} if (isset($_GET['sort'])) { $sort = $_GET['sort']; echo "&sort=$sort";}  ?>"><?php echo $num?></a></li>
+                    <?php } ?>
+
+                <?php } else { ?> <li class="page-item active"><span class="page-link"><?php echo $num ?></span> </li> <?php  } ?>
+        <?php } ?>
+
+    <!-- //-----------------
+    // LAST PAGE -->
+    <li class="page-item">
+        <?php 
+            if (isset($_GET['page']) ) { 
+                $page = $_GET['page']; 
+                $last_page = $total_page;
+
+                if ( (intval($page) > 1) && (intval($page) < intval($total_page)-4) ) { ?>
+                      <span class="page-link"> <a href="?page=<?php echo $last_page ?><?php if (isset($_GET['search'])) { $search = $_GET['search']; echo"&search=$search";} if (isset($_GET['sort'])) { $sort = $_GET['sort']; echo "&sort=$sort";}  ?>"><?php echo $last_page ?></a></span>
+                <?php }  ?>
+        <?php } ?>
+    </li>
+     <!--  //-------------------------------
+    //NEXT PAGE -->
+    <li class="page-item">
+
+        <?php 
+            if (isset($_GET['page'])) {  
+                $page = $_GET['page'];
+                $next_page = intval($page) + 1;
+
+                if ($page < $total_page) { ?>
+                      <span class="page-link"><a href="?page=<?php echo $next_page ?><?php if (isset($_GET['search'])) { $search = $_GET['search']; echo"&search=$search";} if (isset($_GET['sort'])) { $sort = $_GET['sort']; echo "&sort=$sort";}  ?>"><?php echo ">" ?></a></span>
+
+                <?php }  ?>
+            <?php }  ?>
+
+        <!-- //----------- -->
+        <!-- // Nếu mà không có tồn tại page trên url thì mặc định page = 1 luôn -->
+        <?php 
+            if (empty($_GET['page'])) { 
+                $page = 1;
+                $next_page = intval($page) + 1; 
+                if ($count>0) { ?>
+                    <span class="page-link"><a href="?page=<?php echo $next_page ?><?php if (isset($_GET['search'])) { $search = $_GET['search']; echo"&search=$search";} if (isset($_GET['sort'])) { $sort = $_GET['sort']; echo "&sort=$sort";}  ?>"><?php echo ">" ?></a></span>
+                <?php }  ?>
+            <?php }  ?>
+    </li>
