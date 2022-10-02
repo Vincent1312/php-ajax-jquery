@@ -51,3 +51,6 @@ $sql = "DELETE FROM deal_12h WHERE ten_sp='$tensp'";
 $tensp = "kẹo";
 $sql = "UPDATE deal_12h SET ten_sp='NEW_NAME' WHERE ten_sp='$tensp' ";
 ===================================
+BONUS :
+CHECK DỮ LIỆU LOGIN
+$sql = "SELECT * FROM account_mod WHERE username = '$username' AND password = '$password' LIMIT 1 ";
