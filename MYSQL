@@ -1,0 +1,53 @@
+A.KẾT NỐI MYSQL
+<?php 
+
+// echo "Aaaaaaaaaaaaaa";
+
+$sever = "184.168.112.214";
+$user = "vincentne1";
+$pass = "Nghiane01!";
+$database = "gsdadmin1";
+
+
+$connect_mysql = new mysqli($sever,$user,$pass,$database);
+
+if ($connect_mysql->connect_errno) {
+	echo "connect that bai"."<br>". $connect_mysql->connect_error;
+	exit();
+} elseif ($connect_mysql) {
+	mysqli_query($connect_mysql,"SET NAMES 'utf8'");
+	// echo "ĐÃ KẾT NỐI THÀNH CÔNG";
+}
+?>
+ ============================================================
+B.THỰC HIỆN TRUY VẤN DATABASE
+1. LẤY TẤT CẢ DỮ LIỆU TỪ 1 BẢNG
+$sql = "SELECT * FROM deal_12h WHERE 1";
+$result = mysqli_query($connect_mysql,$sql); // CÁI $connect_mysql là gọi từ thằng import mysql ở mục A nha
+$count = mysqli_num_rows($result); // ĐẾM XEM NÓ LẤY ĐƯỢC BAO NHIÊU PHÂN TỬ HỢP LỆ
+
+while ($row = mysqli_fetch_array($result)) {
+  $ten_sp = $row['ten_sp'];
+  echo $ten_sp;
+}
+-------------
+2. LẤY PHẦN TỬ THEO TÊN & SẮP XẾP & LIMIT
+${type} = mua_giam; // cái này là cột cần sắp xếp
+${sort} = DESC; 
+$begin = 0 ; //Lấy từ sản phẩm thứ 0
+$per_page = 8; //mỗi lần lấy sẽ lấy 8 sản phẩm
+
+$sql = "SELECT * FROM deal_12h WHERE ten_sp LIKE '%$search%' ORDER BY ${type} ${sort} LIMIT $begin,$per_page";
+--------------------------
+3. INSERT DỮ LIỆU
+$sql = "INSERT INTO deal_12h (ten_sp, gia_sale, gia_goc) VALUES ($tensp, $giasale', $giagoc)";
+--------------------------
+4. DELETE DỮ LIỆU
+$sql = "DELETE FROM deal_12h WHERE id=3";
+hoặc 
+$tensp = "kẹo";
+$sql = "DELETE FROM deal_12h WHERE ten_sp='$tensp'";
+5. UPDATE DỮ LIỆU
+$tensp = "kẹo";
+$sql = "UPDATE deal_12h SET ten_sp='NEW_NAME' WHERE ten_sp='$tensp' ";
+===================================
