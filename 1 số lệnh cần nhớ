@@ -1,0 +1,11 @@
+============MỘT SỐ LỆNH CẦN NHỚ
+A. PHP THUẦN
+1. chuyển tới file index.php
+header("include:index.php");
+
+2. khi mở file thì nó sẽ gặp dòng này mở file index.php
+include("index.php");
+
+=> hoặc có thể dùng hàm require 
+
+
