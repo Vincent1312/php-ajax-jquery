@@ -1,0 +1,116 @@
+A IN GIÁ TRỊ :
+<?php 
+  $first_variable = "hello world";
+  echo $first_variable ;
+?>
+---------------------------------------------------------------------------------
+A.2
+NỐI CHUỖI VÀ 1 SỐ LƯU Ý KHI IN
+Cách 1 :
+$number = 5;
+$location = "HCM CITY";
+$content = "there are ".$number." monkeys in ".$location; // Output => there are 5 monkeys in HCM CITY
+------
+Cách 2 :
+$num = 5;
+$location = 'tree';
+echo 'There are $num monkeys in the $location'; // There are $num monkeys in the $location
+echo "There are $num monkeys in the $location"; // There are 5 monkeys in the tree
+LƯU Ý :
+- Muốn nối chuỗi thì dùng "" 
+- Hoặc có thể nối theo 2 cách sau nữa
+$output = "There are {$num} monkeys in the {$location}"; // There are 5 monkeys in the tree
+// OR
+$output = "There are ${num} monkeys in the ${location}"; // There are 5 monkeys in the tree
+--------------------------------------------------------------
+A.3
+Chuyển string sang int & ngược lại
+-------------STRING -> INT
+$int_value = "5";
+$int_value = intval( $string );
+-------------INT> STRING
+$var = 5;
+$items = strval($var); // $items === "5";
+==========================================================================
+B - TOÁN TỬ
+== : so sánh bằng
+!= : khác
+$$ : and hoặc and (giống python)
+|| : or  hoặc or (giống python)
+>= : giống python
+<= : giống python
+==========================================================================
+C. FUNCTION
+Cách 1:
+function daylafunc() {
+    echo "đây là function";
+}
+
+daylafunc();
+------
+Cách 2
+function daylafunc_agrument($nghia) {
+    echo "xin chào $nghia agrument";
+}
+daylafunc_agrument("nghia");
+-------
+Cách 3 
+function daylafunc_return($nghia) {
+    echo "xin chào $nghia return";
+}
+$return_value = daylafunc_agrument("nghia");
+echo $return_value;
+=====================================================
+D. IF,FOR,WHILE
+D.1 IF ELSE
+$num = 10;
+
+if ($num > 10) {
+	echo "$num > 10";
+} else if ($num == 10) {
+	echo "$num = 10";
+} else {
+	echo "$num < 10";
+}
+-----
+D.2 FOR LOOP
+example1 : for loop 0->10
+for ($i=0;$i<=10;$i++) {
+     if ($i%2 == 0) {echo "$i <br>";}
+ }
+ example 2 : for loop in list
+ cách 1:
+ $array = ["hello","anh","em"];
+
+    for($i = 0; $i < count($array); $i++) {
+        echo "$array[$i] <br>" ; 
+    }
+ Cách 2 :
+ $array = ["hello","anh","em"];
+ foreach($array as $value) {
+        echo "$value <br>" ; 
+  } 
+Cách 3 : (y chang enumerarate bên python) => recommend dùng cách này
+$array = ["hello","anh","em"];
+foreach($array as $index => $value) {
+     echo "$index $value <br>" ; 
+    } 
+Lưu ý :
+ngoài cách khai báo list trên thì thấy các code thủ hay dùng cách khai báo list này
+$array = array("hello","anh","em");
+--------
+D.3 WHILE
+$i = 1;
+    $checkCondition = true;
+    while ($checkCondition) {
+        if ($i >100) {
+        $checkCondition = false; //(hoặc ngay này break cũng đc) 
+        }
+        else {
+            echo "$i <br>";
+            $i++;
+        }
+    }
+=> dùng break như bình thường
+
+  
