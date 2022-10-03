@@ -1,0 +1,55 @@
+A/ LÝ THUYẾT
+1. Gắn link này vào trong file html
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+Sẵn tiện để link boottrap lun :)))
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+2. Khởi tạo script
+$(document).ready(function(){
+// Bỏ code jquery,ajax vào đây....
+});
+Ví dụ:
+$(document).ready(function(){
+    $('.test_class').on('click',function(){
+        $(.'test_class_want_to_change').css({'backgroundColor':})
+    })
+});
+Bonus:
+ví dụ muốn lấy cái div hay p thứ 1 2 3 gì đó thì làm theo công thức 
+$('div:first').css({'backgroundColor':})
+$('div:last').css({'backgroundColor':})
+$('div p:last').css({'backgroundColor':})
+$('div p:nth-child(2)').css({'backgroundColor':})
+====================================
+B/ MỘT SỐ PHƯƠNG THỨC CƠ BẢN
+1. hide() + click()
+$('.test_class').on('click',function(){
+        $(.'test_class_want_to_change').css({'backgroundColor':})
+    })
+-----------
+2. text()
+$('.test_class').on('click',function(){
+        title = "xin chào";
+        $(.'test_class_want_to_change').text(title);
+    })
+-------------
+3. html() - giống innerHTML bên js
+$('.test_class').on('click',function(){
+        $(.'test_class_want_to_change').html(<p class="test">hello</p>);
+    })
+4. addClass() - tức là thêm class vào element
+$('.test_class').on('click',function(){
+        $(.'test_class_want_to_change').addClass('new_class');
+    })
+    
+  
+    
+    
+    
+    
+    
+    
+    
