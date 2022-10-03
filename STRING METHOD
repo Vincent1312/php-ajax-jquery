@@ -14,28 +14,7 @@ $split_str1 = explode(" ",$str1);
 var_dump($split_str1);
 => Vì không thể in list trong php đc cho nên chỉ vardump thôi (còn lại thì làm ẩn)
 //===============================================================================
-//4. include (Nó giống if "string" in list hoặc string ở python)
-// case 1 - check if "string" has in list
-my_list = ["Goc","San","Deal"]
-keyword_to_check = "San"
-if (my_list.includes(keyword_to_check)) {
-	console.log(`${keyword_to_check} có trong list`)	
-}
-else {
-	console.log("Không tìm thấy")
-}
-//----------------
-// Case 2 - Check if "string" has in string
-my_string = "Goc San Deal"
-keyword_to_check = "San"
-if (my_string.includes(keyword_to_check)) {
-	console.log(`${keyword_to_check} có trong String`)	
-}
-else {
-	console.log("Không tìm thấy")
-}
-//===============================================================================
-5. Check if string in string 
+4. Check if string in string 
 Dùng Re
 $a = 'góc săn deal';
     $search = 'săn';
@@ -46,3 +25,26 @@ $a = 'góc săn deal';
     }
  => Chữ i ở cuối đc dùng để không phân biệt chữ hoa , chữ thường nha
  => update thêm về phần re sau....
+ //===============================================================================
+// 5. join (chuyển list thành string)
+
+$arr = ["goc","san","deal"];
+$str = join(" ",$arr);
+echo $str; // Out put : goc san deal
+//===============================================================================
+//6. replace & replace all (giống y chang bên python nhưng mà bên này có thêm replace all)
+$str = "góc săn deal";
+$keyword = "deal";
+$str_replace = str_replace( $keyword,"sale",$str);
+
+echo $str_replace;
+//===============================================================================
+//9. trim() (giống strip() bên python -  loại bỏ khoảng trắng 2 bên trái phải)
+$str = "    Hello World!   ";
+    echo trim($str);
+ //===============================================================================
+//10. substr (tách chuỗi - giống string[0:3] bên python mà rườm rà hơn :v )
+echo substr("Hello world",0,10);
+Bonus : lấy kí tự cuối trong string thì:
+$str = "gocsandeal";
+echo $str[-1] // Out put : d
