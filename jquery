@@ -27,7 +27,7 @@ $('div p:nth-child(2)').css({'backgroundColor':})
 B/ MỘT SỐ PHƯƠNG THỨC CƠ BẢN
 1. hide() + click()
 $('.test_class').on('click',function(){
-        $(.'test_class_want_to_change').css({'backgroundColor':})
+        $(.'test_class_want_to_change').hide();
     })
 -----------
 2. text()
@@ -40,13 +40,57 @@ $('.test_class').on('click',function(){
 $('.test_class').on('click',function(){
         $(.'test_class_want_to_change').html(<p class="test">hello</p>);
     })
+-------------  
 4. addClass() - tức là thêm class vào element
 $('.test_class').on('click',function(){
         $(.'test_class_want_to_change').addClass('new_class');
     })
-    
-  
-    
+-------------   
+5. removeClass() - tức là thêm class vào element
+$('.test_class').on('click',function(){
+        $(.'test_class_want_to_change').removeClass();
+    })
+-------------  
+6. css()
+$('.test_class').on('click',function(){
+        $(.'test_class_want_to_change').css({'backgroundColor':'red','fontSize': '19px'});
+    })
+7. append() & prepend() - giống appendchild , cái prepend là cũng y chang như thêm đằng trước (trong khuôn khổ div đó)
+$('.test_class').on('click',function(){
+        $('#alo').append('<p class="123">thêm đằng sau</p>');
+    })
+=> thêm đằng sau
+$('.test_class').on('click',function(){
+        a = '<p class="123">thêm đằng trước</p>';
+		$('#alo').prepend(a);
+=> thêm đằng trước
+------------
+7. after() & before() - giống append trên (NHƯNG NÓ NẰM NGOÀI CÁI DIV ĐÓ, TỨC LÀM TIẾP THEO CHỨ K PHẢI NẰM TRONG DIV)
+$('.test_class').on('click',function(){
+        $('#alo').after('<p class="123">thêm đằng sau</p>');
+    })
+=> thêm đằng sau
+$('.test_class').on('click',function(){
+        a = '<p class="123">thêm đằng trước</p>';
+		$('#alo').before(a);
+=> thêm đằng trước
+8. replaceWith() & remove()  - cái replaceWith y chang lệnh html() và remove i chang hide nhưng remove là xoá luôn, còn hide chỉ ẩn
+$('.test_class').on('click',function(){
+        $(.'test_class_want_to_change').replaceWith('<p class="123">replace nè</p>');
+    })
+=> LƯU Ý : replaceWith() là nó mất luôn cái css có sẵn của thẻ cần thay thể luôn, còn lệnh html()thì vẫn giữ css....
+====================================
+BONUS :
+- DÙNG THIS TRONG AJAX & LẤY CLASSNAME...
+$(document).ready(function(){
+    $('#123a').on('click',function(){
+        classname = $(this).attr('class');
+        id = $(this).attr('id');
+        console.log(classname);
+        console.log(id);
+    })
+})
+
     
     
     
