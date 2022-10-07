@@ -1,0 +1,59 @@
+A . LYS THUYETS
+=> CáC CÚ PHÁP NÓ LÀ CỦA JQUERY HẾT NHƯNG MÀ CÁI ĐOẠN AJAX LÀ DÙNG ĐỂ KẾT HỢP XỬ LÝ THÊM PHP
+
+IMPORT AJAX 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+=========================================================================
+DEMO CODE:
+$(document).ready(function(){
+
+		function get_username() {
+
+				$('#123a').on('click',function(){
+				var username_value = $('#username').val();
+				var password_value = $('#password').val();
+
+				console.log(username_value);
+				console.log(username_value);
+				
+				$.ajax({
+					url: "xuli.php",
+					method : "post",
+					data: {username_php:username_value,password_php:password_value},
+					success:function(ketqua){
+					$('#alo').html(ketqua); //Lấy all ra truoc
+					$('#alo').html($('.username_class').html()); // Lấy class bất kì
+					console.log(ketqua);
+
+					}
+					
+				});
+
+			});
+
+
+		}
+
+		get_username();
+    
+  ===========
+  TRONG FILE XULI.PHP GỒM
+  <?php 
+
+	$new_username = $_POST['username_php'];
+	$new_password = $_POST['password_php'];
+
+
+	echo "
+	<p class='username_class'>$new_username</p>
+	<p class='password_class'>$new_password</p>
+	";
+
+?>
+
+=> TRONG FILE PHP THÌ ECHO ĐOẠN NÀO LÀ NÓ TRẢ VỀ DATA ĐOẠN ĐÓ
