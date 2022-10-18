@@ -1,0 +1,32 @@
+===========DEMO CODE==========
+
+<?php
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'https://tiki.vn/api/v2/widget/deals/collection?page=1&tag_id=best_deals&per_page=24&time_id=5');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'authority' => 'tiki.vn',
+    'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',
+
+]);
+curl_setopt($ch, CURLOPT_COOKIE, '_trackity=9542e28b-ce9f-6879-0cdd-41fbdca7169b;');
+
+$response = curl_exec($ch);
+$jsondata = json_decode($response,true);
+
+$data = $jsondata['data'];
+
+
+if ($data!="") {
+    foreach ($data as $row) {
+        $name = $row['product']['name'];
+        $price = $row['product']['price'];
+        // echo $name." ".$price."<br>";
+        $content = "Tên sản phẩm : $name<br>Gía sản phẩm : $price<br>======<br>";
+        echo $content;
+    }
+}
+
+
+curl_close($ch);
