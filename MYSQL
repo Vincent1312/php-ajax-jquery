@@ -49,6 +49,9 @@ $tensp = "kẹo";
 $sql = "DELETE FROM deal_12h WHERE ten_sp='$tensp'";
 5. UPDATE DỮ LIỆU
 $tensp = "kẹo";
+UPDATE TỪNG CÁI
+$sql = "UPDATE deal_12h SET ten_sp='NEW_NAME',gia_sp='NEW_GIA' WHERE ten_sp='$tensp' ";
+UPDATE MULTIPLE
 $sql = "UPDATE deal_12h SET ten_sp='NEW_NAME' WHERE ten_sp='$tensp' ";
 ===================================
 BONUS :
