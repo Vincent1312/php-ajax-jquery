@@ -1,0 +1,32 @@
+1. FOR LOOP IN LIST
+ cách 1:
+ $array = ["hello","anh","em"];
+
+    for($i = 0; $i < count($array); $i++) {
+        echo "$array[$i] <br>" ; 
+    }
+ Cách 2 :
+ $array = ["hello","anh","em"];
+ foreach($array as $value) {
+        echo "$value <br>" ; 
+  } 
+Cách 3 : (y chang enumerarate bên python) => recommend dùng cách này
+$array = ["hello","anh","em"];
+foreach($array as $index => $value) {
+     echo "$index $value <br>" ; 
+    } 
+Lưu ý :
+ngoài cách khai báo list trên thì thấy các code thủ hay dùng cách khai báo list này
+$array = array("hello","anh","em");
+===================================
+2 . APPEND
+2.1 Append thường
+<?php
+  $a=array("red","green");
+  array_push($a,"new_value1","new_value2");
+  var_dump($a);
+?>
+2.2 Append dict to list
+$my_list = []
+my_list["hello"] = "world"; // Out put = > [{"hello":"world"}]
+
