@@ -1,4 +1,4 @@
-// // ==================== CÁC STRING METHOD BẮT BUỘC BIẾT TRONG JAV SCRIPT (MÌNH SẼ DÙNG FUNCTION ĐỂ BIỂU DIỄN)=============================
+// // ==================== CÁC STRING METHOD BẮT BUỘC PHẢI BIẾT TRONG PHP=============================
 
 // 1. strtoupper (Viết hoa các chữ trong string - giống title trong python)
 <?php
