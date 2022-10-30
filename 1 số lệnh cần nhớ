@@ -12,3 +12,5 @@ include("index.php");
 if (isset($_GET['variable'])) {
   // DO SOMETHING
 }
+
+=> Có nghĩa là khi mà mình post Phương thức GET kia lên web (ví dụ ấn form login hay params trên url) thì nó sẽ check nếu isset(có nghĩa là tồn tại biến đó) thì ==>.... do some thing
