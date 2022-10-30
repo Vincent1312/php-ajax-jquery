@@ -8,4 +8,7 @@ include("index.php");
 
 => hoặc có thể dùng hàm require 
 
-
+3. check if data như python (THƯỜNG DÙNG TRONG HÀM $_GET VÀ $_POST để check xem data đó có tồn tại hay không)
+if (isset($_GET['variable'])) {
+  // DO SOMETHING
+}
